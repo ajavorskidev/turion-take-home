@@ -32,10 +32,15 @@ gem "bootsnap", require: false
 
 # User Authentication
 gem 'devise'
+gem 'devise-jwt'
 
 # Linter
 gem 'rubocop'
 gem 'rubocop-rails'
+
+# Gem to allow for the fetching of images from a AWS S3 bucket
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
