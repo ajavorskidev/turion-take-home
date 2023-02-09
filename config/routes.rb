@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  resources :missions
+  scope :api, defaults: { format: :json } do
+    devise_for :users, :skip => :sessions
+    resources :missions
+  end
 
 end
