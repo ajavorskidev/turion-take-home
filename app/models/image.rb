@@ -10,6 +10,9 @@ class Image
     @mission = mission
   end
 
+  # Method for fetching a image corresponding to a image key associated with a mission. Returns
+  # nothing if the mission is not marked as "Successful". If the mission is completed, and the
+  # call to the AWS S3 service is successful, returns a binary file.
   def fetch_image
     return unless @mission.status == "Successful"
 

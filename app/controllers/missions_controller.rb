@@ -1,10 +1,13 @@
 class MissionsController < ApplicationController
+  # Returns a list of all missions corresponding to the current user.
   def index
     @missions = Mission.where(email: current_user.email)
 
     render json: @missions
   end
 
+  # Returns a mission corresponding to the provided misison id, and which is
+  # associated to the current user.
   def show
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
@@ -15,6 +18,8 @@ class MissionsController < ApplicationController
     end
   end
 
+  # Creates and returns a newly created mission with the given parameters and
+  # associated to the current user. Status is set by default to "Planned".
   def create
     @mission = Mission.create(name: params[:name], status: "Planned",
                               latitude: params[:latitude], longitude: params[:longitude],
@@ -23,12 +28,17 @@ class MissionsController < ApplicationController
     render json: @mission
   end
 
+  # Updates and returns the updated mission corresponding to the given mission id
+  # and current user. Calls the update_parameters method to check whether a request
+  # is valid and update the mission. update_parameters returns a status code 400 if
+  # a request is invalid.
   def update
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
     render json: @mission, status: @mission.update_parameters(params)
   end
 
+  # Deletes the mission corresponding to the given mission id and current user.
   def destroy
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
