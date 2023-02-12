@@ -37,6 +37,7 @@ gem 'devise-jwt'
 # Linter
 gem 'rubocop'
 gem 'rubocop-rails'
+gem 'rubocop-rspec'
 
 # Gem to allow for the fetching of images from a AWS S3 bucket
 gem 'aws-sdk-rails'
@@ -51,6 +52,10 @@ gem 'aws-sdk-s3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  
+  # Testing
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do

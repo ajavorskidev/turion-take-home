@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
       @image = Image.new(@mission)
 
       # The S3 service call occurs in the fetch_image method, returning the image.
-      send_data @image.fetch_image, filename: "image", type: "image/jpeg", disposition: "inline"
+      send_data @image.fetch_image, filename: "image.jpg", type: "image/jpeg", disposition: "inline"
 
     else
       render status: :not_found

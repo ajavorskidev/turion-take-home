@@ -6,6 +6,8 @@ AllCops:
     - script/**/*
     - bin/**/*
     - test/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
     - app/admin/**/*
     - app/channels/**/*
     - app/jobs/**/*
@@ -16,6 +18,7 @@ AllCops:
 
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 Style/Encoding:
   Enabled: false
@@ -39,6 +42,7 @@ Style/FrozenStringLiteralComment:
 Style/WordArray:
   Description: 'Use %w or %W for arrays of words.'
   Enabled: false
+  
 
 # Defaults all strings to double quotes. Less performant, but
 # nicer for consistency, and for adding interpolation later.
@@ -61,4 +65,20 @@ Lint/UnusedMethodArgument:
   AutoCorrect: false
 
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+# Limit of lets and other helpers used in a example group
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+# Limit of nested example groups
+RSpec/NestedGroups:
+  Max: 4
+
+# Disables "Too many expectations."
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Disables "RSpec/MessageSpies"
+RSpec/MessageSpies:
   Enabled: false

@@ -1,6 +1,8 @@
 require "aws-sdk-s3"
 
 class Image
+  attr_reader :mission, :service_client
+
   def initialize(mission)
     @service_client = Aws::S3::Client.new(
       region:            Rails.application.credentials.aws_region,
