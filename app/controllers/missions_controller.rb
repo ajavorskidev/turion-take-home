@@ -11,10 +11,10 @@ class MissionsController < ApplicationController
   def show
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
-    if @mission.nil?
-      render status: :not_found
-    else
+    if @mission
       render json: @mission
+    else
+      render status: :not_found
     end
   end
 
@@ -25,7 +25,7 @@ class MissionsController < ApplicationController
                               latitude: params[:latitude], longitude: params[:longitude],
                               altitude: params[:altitude], email: current_user.email)
 
-    render json: @mission
+    render json: @mission, status: :created
   end
 
   # Updates and returns the updated mission corresponding to the given mission id
@@ -35,18 +35,22 @@ class MissionsController < ApplicationController
   def update
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
-    render json: @mission, status: @mission.update_parameters(params)
+    if @mission
+      render json: @mission, status: @mission.update_parameters(params)
+    else
+      render status: :not_found
+    end
   end
 
   # Deletes the mission corresponding to the given mission id and current user.
   def destroy
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
-    if @mission.nil?
-      render status: :not_found
-    else
+    if @mission
       @mission.destroy
       render json: "#{@mission.name} has been canceled", status: :ok
+    else
+      render status: :not_found
     end
   end
 end

@@ -13,6 +13,19 @@ While I would like to think that the approach I took was the most optimal, I bel
 
  ### Setup
 After cloning the API repository, run the following commands to set up the API:
+ **IMPORTANT**:
+Create a `master.key` file in the `config` folder, and populate it with the given master.key. If you skip this step, you will be unable to read
+or edit the `credentials.yml.enc` file.
+
+Ensure that the AWS credentials and Devise key are populated in the `credentials.yml.enc` file. This can be done by running:
+`````
+bin/rails credentials:edit
+`````
+If an Editor is not defined, you may need to run:
+````ini
+EDITOR="nano --wait" bin/rails credentials:edit
+````
+
 Install the required Gems by running: 
 ````
 bundle install
@@ -25,15 +38,7 @@ Then run the database migration:
  ````
  bin/rails db:seed
  ````  
- **IMPORTANT**:
-Ensure that the AWS credentials and Devise key are populated in the `credentials.yml.enc` file. This can be done by running:
-`````
-bin/rails credentials:edit
-`````
-If an Editor is not defined, you may need to run:
-````ini
-EDITOR="nano --wait" bin/rails credentials:edit
-````
+
 After running `bundle install` , database migrations, and populating `credentials.yml.enc`
 you may start the Rails API by running:
 ````

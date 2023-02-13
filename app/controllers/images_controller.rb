@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
     @mission = Mission.where(id: params[:id], email: current_user.email)[0]
 
     # Check whether a mission was found with the provided id and corresponding user email.
-    if @mission
+    if @mission.image
       # Initializes a new image object, in addition to initializing a new AWS S3 client
       @image = Image.new(@mission)
 

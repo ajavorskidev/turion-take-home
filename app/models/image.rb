@@ -16,7 +16,6 @@ class Image
   # nothing if the mission is not marked as "Successful". If the mission is completed, and the
   # call to the AWS S3 service is successful, returns a binary file.
   def fetch_image
-    return unless @mission.status == "Successful"
 
     response = @service_client.get_object(
       bucket: Rails.application.credentials.bucket,
