@@ -78,7 +78,7 @@ RSpec.describe MissionsController, type: :controller do
       let(:expected_mission) { Mission.new(expected_mission_model) }
 
       it "creates a mission" do
-        expect(controller).to receive(:render).with(json: expected_mission)
+        expect(controller).to receive(:render).with(json: expected_mission, status: :created)
         post :create,
              params: { name: "testMissionPOST", latitude: 23.43, longitude: 34.21,
                        altitude: 40_000 }

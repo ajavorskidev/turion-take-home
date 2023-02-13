@@ -1,10 +1,10 @@
 class ImagesController < ApplicationController
   def show
     # Grab the mission corresponding to the mission id provided, and the user's email
-    @mission = Mission.where(id: params[:id], email: current_user.email)[0]
+    @mission = Mission.where(id: params[:id], status: "Successful", email: current_user.email)[0]
 
     # Check whether a mission was found with the provided id and corresponding user email.
-    if @mission.image
+    if @mission
       # Initializes a new image object, in addition to initializing a new AWS S3 client
       @image = Image.new(@mission)
 
