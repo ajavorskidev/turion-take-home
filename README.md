@@ -58,11 +58,13 @@ bin/rails server
  rubocop
  ```
 ## Available API Routes
-All routes except the authentication routes, require populating the authorization header for each request. If using postman, you may use `basic auth` to populate user credentials for the request.
+All routes require populating the authorization header for each request. If using postman, you may use `basic auth` to populate user credentials for the request, and if implementing into an existing application you may populate the JWT provided as a bearer token from the sign_in response authorization header.
 ### Authentication Route
 |Action|Route|Required Body |Description |
 |--|--|--|--|
-|POST  |/api/users/  |{"email": "string", "password": "string"}  | Devise route to allow for the creation of a user account.
+|POST  |/api/users/  |{"user": { email": "string", "password": "string" } }  | Devise route to allow for the creation of a user account. User will remain signed-in, and must be logged out to test other users.|
+|POST|/api/users/sign_in|None| Devise route to allow for a user to sign in. Used to create a JWT token found in the response's authorization header.|
+|DELETE|/api/users/sign_out|None| Devise route to revoke token generated from sign_in or sign_up. Requires bearer token to be passed in authorization header.|
 ### Mission Routes 
 |Action|Route|Required Body |Description |
 |--|--|--|--|
